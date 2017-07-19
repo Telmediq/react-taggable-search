@@ -4,13 +4,13 @@
   "description": "React Taggable Search",
   "main": "lib/ReactTaggableSearch.js",
   "author": "Tyson Battistella",
-  "homepage": "https://github.com/tysonbattistella/react-taggable-search",
+  "homepage": "https://github.com/telmediq/react-taggable-search",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tysonbattistella/react-taggable-search.git"
+    "url": "https://github.com/telmediq/react-taggable-search.git"
   },
   "bugs": {
-    "url": "https://github.com/tysonbattistella/react-taggable-search/issues"
+    "url": "https://github.com/telmediq/react-taggable-search/issues"
   },
   "dependencies": {
     "classnames": "^2.1.2",
@@ -31,7 +31,10 @@
     "react-dom": "^0.14.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0"
+    "react": "^0.14.0",
+    "react-select": "^1.0.0-rc.5",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "browserify-shim": {
     "react": "global:React"

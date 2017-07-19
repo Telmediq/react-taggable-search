@@ -16,14 +16,54 @@ const store = createStore(
 );
 
 const searchFn = (data) => {
-	alert(data);
+	console.log(data);
 };
 
 const App = React.createClass({
 	render () {
+		const tags = [
+			{
+				tagKey: 'foo',
+				tagLabel: 'Local Tag',
+				options: [
+					{
+						value: '1',
+						label: 'One'
+					},
+					{
+						value: 2,
+						label: 'Two'
+					},
+					{
+						value: 3,
+						label: 'Three'
+					}
+				]
+			},
+			{
+				tagKey: 'bar',
+				tagLabel: 'Custom Style Tag',
+				tagStyle: {
+					background: 'linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet)'
+				},
+				options: [{value: '1', label: 'Pick Me!'}]
+			},
+			{
+				tagKey: 'baz',
+				tagLabel: 'Remote Resource Tag (Telmediq Repositories)',
+				optionResourceUri: 'http://api.github.com/orgs/telmediq/repos',
+				optionCreationFactory: (resp) => {
+					const options = [];
+					resp.forEach((repo)=>{
+						options.push({value: repo.id, label: repo.name})
+					});
+					return options;
+				}
+			}
+		];
 		return (
 			<Provider store={store}>
-				<ReactTaggableSearch searchFn={searchFn} searchKey="uniqueKey"/>
+				<ReactTaggableSearch searchFn={searchFn} searchKey="uniqueKey" tags={tags} />
 			</Provider>
 		);
 	}

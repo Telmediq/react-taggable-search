@@ -8,7 +8,7 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 	}
 	
 	handleChange(values){
-		this.props.onValueChange()
+		this.props.onValueChange(values)
 	}
 	
 	handleLoadOptions(input, callback){

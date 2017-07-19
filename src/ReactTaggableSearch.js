@@ -12,14 +12,14 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-	const {searchKey, searchFn, tags, hiddenFilters} = {ownProps};
+	const {searchKey, searchFn, tags, hiddenFilters} = ownProps;
 	
 	return {
 		onMount: () => {
 			dispatch(createSearchBar(searchKey, searchFn, tags, hiddenFilters));
 		},
 		onValueChange: (values) => {
-			dispatch(handleValueChange(searchKey, values, searchFn, hiddenFilters));
+			dispatch(handleValueChange(searchKey, searchFn, values, hiddenFilters));
 		},
 		onInputChange: (input) => {
 			const promise = new Promise((resolve, reject) => {

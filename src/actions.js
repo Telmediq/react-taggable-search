@@ -11,7 +11,7 @@ export const TAG_SELECTED = 'taggableSearch/TAG_SELECTED';
 const buildQueryParams = (values = [], hiddenFilters = {}) => {
 	const params = {};
 	values.forEach((tag) => {
-		param[tag.tagKey] = tag.option.value;
+		params[tag.tagKey] = tag.option.value;
 	});
 	return {...hiddenFilters, ...params};
 };
@@ -189,13 +189,18 @@ export function handleValueChange(searchKey, searchFn, values = [], hiddenFilter
 				dispatch({
 					type: GET_OPTIONS_SUCCESS,
 					key: searchKey,
-					result: state.tags
+					content: state.tags
 				});
 				const currentTag = state.currentTag;
 				currentTag.option = added;
 				currentTag.style = {...currentTag.tagStyle || {}}
 				dispatch({
 					type: VALUE_CHANGE,
+					key: searchKey,
+					content: values
+				});
+				dispatch({
+					type: TAG_SELECTED,
 					key: searchKey,
 					content: null
 				});
@@ -219,7 +224,7 @@ export function handleInputChange(searchKey, input, resolve) {
 			});
 			dispatch({
 				type: GET_OPTIONS_SUCCESS,
-				result: options,
+				content: options,
 				key: searchKey
 			});
 			resolve();

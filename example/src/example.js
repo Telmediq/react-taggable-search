@@ -1,13 +1,30 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var ReactTaggableSearch = require('react-taggable-search');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 
-var App = React.createClass({
+import ReactTaggableSearch, {taggableReducer} from 'react-taggable-search';
+
+const reducers = combineReducers({taggableSearch: taggableReducer});
+
+const store = createStore(
+	reducers,
+	applyMiddleware(
+		thunk
+	)
+);
+
+const searchFn = (data) => {
+	alert(data);
+};
+
+const App = React.createClass({
 	render () {
 		return (
-			<div>
-				<ReactTaggableSearch />
-			</div>
+			<Provider store={store}>
+				<ReactTaggableSearch searchFn={searchFn} searchKey="uniqueKey"/>
+			</Provider>
 		);
 	}
 });

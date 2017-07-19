@@ -19,7 +19,7 @@ const initialState = () => {
 	}
 };
 
-export function reducer(state = {}, action = {}) {
+export function taggableReducer(state = {}, action = {}) {
 	const newState = {...state};
 	
 	switch (action.type) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import {AsyncCreatable} from 'react-select';
+import css from './taggableSearchPresentationalComponent.css';
 
 export default class TaggableSearchBarPresentationalCommponent extends React.Component {
 	componentWillMount(){
@@ -45,6 +46,15 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 		const store = this.props.store[this.props.searchKey];
 		const values = store ? store.value : [];
 		const options = store && !store.loading ? store.options : [];
+
+		if (!document.getElementsByTagName('head')[0].querySelector('style[id="taggable-search-container"]')) {
+			// insert the style into the head
+			let tag = document.createElement('style');
+			tag.id = 'taggable-search-container';
+			tag.innerHTML = css;
+			document.getElementsByTagName('head')[0].appendChild(tag);
+		}
+
 		let asyncCreatableProps = {
 			multi: true,
 			value: values,
@@ -63,7 +73,7 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 		// Shitty workaround with bug from https://github.com/JedWatson/react-select/issues/1547
 		asyncCreatableProps = store && store.options.length ? {...asyncCreatableProps, filterOptions: a=>a} : {...asyncCreatableProps};
 		return (
-			<div>
+			<div id="taggable-search-container">
 				<AsyncCreatable {...asyncCreatableProps}/>
 			</div>
 		)

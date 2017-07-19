@@ -36,3 +36,4 @@ const ReactTaggableSearch = connect(
 )(PresentationalComponent);
 
 export default ReactTaggableSearch;
+export {taggableReducer} from './reducer'; 

@@ -36,15 +36,15 @@ const getDebouncedOptions = _.debounce((dispatch, state, input, searchKey, resol
 			return a.label.toLowerCase().indexOf(term) < b.label.toLowerCase().indexOf(term) ? -1 : 1;
 		});
 	}
-	
-	if(state.currentTag && state.currentTag.optionResourceUri) {
+
+	if (state.currentTag && state.currentTag.optionResourceUri) {
 		dispatch({
 			type: GET_OPTIONS,
 			key: searchKey
 		});
 		const uri = `${state.currentTag.optionResourceUri}?${state.currentTag.optionResourceFilterKey}=${input}`;
 		fetchResource(uri, state.currentTag.optionResourceUriHeaders)
-			.then((resp)=>{
+			.then((resp) => {
 				resp = sortByTerm(state.currentTag.optionCreationFactory(resp), input);
 				resolve();
 				dispatch({
@@ -54,7 +54,7 @@ const getDebouncedOptions = _.debounce((dispatch, state, input, searchKey, resol
 				})
 			});
 	} else if (state.currentTag) {
-		const options = _.filter(state.currentTag.options, (option)=>{
+		const options = _.filter(state.currentTag.options, (option) => {
 			return option.label.toLowerCase().includes(input.toLowerCase())
 		});
 		const result = sortByTerm(options, input);
@@ -148,7 +148,7 @@ export function createSearchBar(searchKey, searchFn, values = [], hiddenFilters 
 						key: searchKey
 					});
 					fetchResource(added.optionResourceUri, added.optionResourceUriHeaders)
-						.then((result)=>{
+						.then((result) => {
 							dispatch({
 								type: GET_OPTIONS_SUCCESS,
 								content: added.optionCreationFactory(result),
@@ -206,15 +206,15 @@ export function createSearchBar(searchKey, searchFn, values = [], hiddenFilters 
 	};
 }
 
-export function handleInputChange(searchKey, input, resolve){
+export function handleInputChange(searchKey, input, resolve) {
 	return (dispatch, getState) => {
 		const state = getState().taggableSearch[searchKey];
-		
+
 		// If there aren't any currently selected tags, filter the options based on the tags.
 		// Else, fetch the options using [input] as a search param
-		if(state.currentTag === null){
+		if (state.currentTag === null) {
 			let options = _.filter(state.tags, (tag) => {
-				if(!input) return tag;
+				if (!input) return tag;
 				return tag.tagLabel.toUpperCase().includes(input.toUpperCase());
 			});
 			dispatch({

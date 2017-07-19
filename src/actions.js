@@ -186,10 +186,11 @@ export function handleValueChange(searchKey, searchFn, values = [], hiddenFilter
 				searchFn(queryParams);
 			} else {
 				values = _.reject(values, {label: added.label, value: added.value});
+				const tags = _.filter(state.tags, (tag)=>(_.map(state.value, 'tagKey').indexOf(tag.tagKey) === -1));
 				dispatch({
 					type: GET_OPTIONS_SUCCESS,
 					key: searchKey,
-					content: state.tags
+					content: tags
 				});
 				const currentTag = state.currentTag;
 				currentTag.option = added;
@@ -219,8 +220,8 @@ export function handleInputChange(searchKey, input, resolve) {
 		// Else, fetch the options using [input] as a search param
 		if (state.currentTag === null) {
 			let options = _.filter(state.tags, (tag) => {
-				if (!input) return tag;
-				return tag.tagLabel.toUpperCase().includes(input.toUpperCase());
+				if (!input && !Object.keys(state.value).includes(tag.tagKey)) return tag;
+				return tag.tagLabel.toUpperCase().includes(input.toUpperCase()) && !Object.keys(state.value).includes(tag.tagKey);
 			});
 			dispatch({
 				type: GET_OPTIONS_SUCCESS,

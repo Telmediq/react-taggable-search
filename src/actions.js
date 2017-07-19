@@ -87,7 +87,7 @@ export function createSearchBar(searchKey, searchFn, tags = [], hiddenFilters = 
 	}
 }
 
-export function createSearchBar(searchKey, searchFn, values = [], hiddenFilters = {}) {
+export function handleValueChange(searchKey, searchFn, values = [], hiddenFilters = {}) {
 	return (dispatch, getState) => {
 		const state = getState().taggableSearch[searchKey];
 		const oldValues = state.value;

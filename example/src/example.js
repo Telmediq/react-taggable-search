@@ -15,12 +15,9 @@ const store = createStore(
 	)
 );
 
-const searchFn = (data) => {
-	console.log(data);
-};
-
 const App = React.createClass({
 	render () {
+		const searchFn = (data) => {};
 		const tags = [
 			{
 				tagKey: 'foo',

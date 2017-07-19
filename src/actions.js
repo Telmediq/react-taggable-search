@@ -67,6 +67,12 @@ const getDebouncedOptions = _.debounce((dispatch, state, input, searchKey, resol
 	}
 }, 500, {leading: false, trailing: true});
 
+const getUnusedTags = (state) => {
+	return _.filter(state.tags, (tag)=>{
+		return _.map(state.value, 'tagKey').indexOf(tag.tagKey) === -1
+	});
+};
+
 export function createSearchBar(searchKey, searchFn, tags = [], hiddenFilters = {}) {
 	return (dispatch, getState) => {
 		const state = getState();
@@ -111,12 +117,12 @@ export function handleValueChange(searchKey, searchFn, values = [], hiddenFilter
 			dispatch({
 				type: GET_OPTIONS_SUCCESS,
 				key: searchKey,
-				result: state.tags
+				content: getUnusedTags(state)
 			});
 			dispatch({
 				type: VALUE_CHANGE,
 				key: searchKey,
-				result: values
+				content: values
 			});
 			searchFn(buildQueryParams(values, hiddenFilters));
 		} else if (added.length >= 1) {
@@ -186,7 +192,7 @@ export function handleValueChange(searchKey, searchFn, values = [], hiddenFilter
 				searchFn(queryParams);
 			} else {
 				values = _.reject(values, {label: added.label, value: added.value});
-				const tags = _.filter(state.tags, (tag)=>(_.map(state.value, 'tagKey').indexOf(tag.tagKey) === -1));
+				const tags = getUnusedTags(state);
 				dispatch({
 					type: GET_OPTIONS_SUCCESS,
 					key: searchKey,

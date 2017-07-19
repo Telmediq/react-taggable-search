@@ -1,0 +1,29 @@
+{
+  "name": "react-taggable-search",
+  "version": "0.0.0",
+  "description": "React Taggable Search",
+  "main": "dist/react-taggable-search.min.js",
+  "homepage": "https://github.com/tysonbattistella/react-taggable-search",
+  "authors": [
+    "Tyson Battistella"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "react-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "src",
+    "node_modules",
+    "example",
+    "test"
+  ]
+}

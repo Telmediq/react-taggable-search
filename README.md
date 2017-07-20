@@ -4,6 +4,8 @@ A React/Redux taggable search input that can accept tags with dynamic options. B
 
 ## Demo & Examples
 
+![example.gif](react-taggable-search-example.gif)
+
 To build the examples locally, run:
 
 ```

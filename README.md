@@ -4,8 +4,6 @@ A React/Redux taggable search input that can accept tags with dynamic options. B
 
 ## Demo & Examples
 
-Live demo: [telmediq.github.io/react-taggable-search](http://telmediq.github.io/react-taggable-search/)
-
 To build the examples locally, run:
 
 ```

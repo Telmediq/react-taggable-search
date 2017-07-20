@@ -43,6 +43,7 @@ First, connect the taggableReducer to your Redux store:
  ```
 
 The ReactTaggableSearch accepts the following props:
+
 | Prop      | Description                                                                                                               |
 | --------- | ------------------------------------------------------------------------------------------------------------------------- |
 | searchKey | <string> A unique key for this search component                                                                           |

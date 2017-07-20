@@ -35,7 +35,7 @@ const getDebouncedOptions = _.debounce((dispatch, state, input, searchKey, resol
 		return data.sort((a, b) => {
 			return a.label.toLowerCase().indexOf(term) < b.label.toLowerCase().indexOf(term) ? -1 : 1;
 		});
-	}
+	};
 
 	if (state.currentTag && state.currentTag.optionResourceUri) {
 		dispatch({
@@ -51,11 +51,11 @@ const getDebouncedOptions = _.debounce((dispatch, state, input, searchKey, resol
 					type: GET_OPTIONS_SUCCESS,
 					content: resp,
 					key: searchKey
-				})
+				});
 			});
 	} else if (state.currentTag) {
 		const options = _.filter(state.currentTag.options, (option) => {
-			return option.label.toLowerCase().includes(input.toLowerCase())
+			return option.label.toLowerCase().includes(input.toLowerCase());
 		});
 		const result = sortByTerm(options, input);
 		dispatch({
@@ -69,7 +69,7 @@ const getDebouncedOptions = _.debounce((dispatch, state, input, searchKey, resol
 
 const getUnusedTags = (state) => {
 	return _.filter(state.tags, (tag)=>{
-		return _.map(state.value, 'tagKey').indexOf(tag.tagKey) === -1
+		return _.map(state.value, 'tagKey').indexOf(tag.tagKey) === -1;
 	});
 };
 
@@ -90,7 +90,7 @@ export function createSearchBar(searchKey, searchFn, tags = [], hiddenFilters = 
 			const queryParams = buildQueryParams(searchParams, hiddenFilters);
 			searchFn(queryParams);
 		}
-	}
+	};
 }
 
 export function handleValueChange(searchKey, searchFn, values = [], hiddenFilters = {}) {
@@ -200,7 +200,7 @@ export function handleValueChange(searchKey, searchFn, values = [], hiddenFilter
 				});
 				const currentTag = state.currentTag;
 				currentTag.option = added;
-				currentTag.style = {...currentTag.tagStyle || {}}
+				currentTag.style = {...currentTag.tagStyle || {}};
 				dispatch({
 					type: VALUE_CHANGE,
 					key: searchKey,
@@ -238,5 +238,5 @@ export function handleInputChange(searchKey, input, resolve) {
 		} else {
 			getDebouncedOptions(dispatch, state, input, searchKey, resolve);
 		}
-	}
+	};
 }

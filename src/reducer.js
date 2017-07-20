@@ -16,7 +16,7 @@ const initialState = () => {
 		loading: false,
 		error: null,
 		currentTag: null
-	}
+	};
 };
 
 export function taggableReducer(state = {}, action = {}) {

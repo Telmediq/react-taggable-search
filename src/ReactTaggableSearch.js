@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {createSearchBar, handleValueChange, handleInputChange} from './actions'
+import {createSearchBar, handleValueChange, handleInputChange} from './actions';
 import {default as PresentationalComponent} from './taggableSearchPresentationalComponent';
 
 const mapStateToProps = (state, ownProps) => {
@@ -23,11 +23,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		},
 		onInputChange: (input) => {
 			const promise = new Promise((resolve, reject) => {
-				dispatch(handleInputChange(searchKey, input, resolve, reject))
+				dispatch(handleInputChange(searchKey, input, resolve, reject));
 			});
 			return promise;
 		}
-	}
+	};
 };
 
 const ReactTaggableSearch = connect(

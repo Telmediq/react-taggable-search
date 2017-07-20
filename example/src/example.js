@@ -52,7 +52,7 @@ const App = React.createClass({
 				optionCreationFactory: (resp) => {
 					const options = [];
 					resp.forEach((repo)=>{
-						options.push({value: repo.id, label: repo.name})
+						options.push({value: repo.id, label: repo.name});
 					});
 					return options;
 				}

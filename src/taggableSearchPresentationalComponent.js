@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {AsyncCreatable} from 'react-select';
 import css from './taggableSearchPresentationalComponent.css';
 
@@ -8,7 +9,7 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 	}
 	
 	handleChange(values){
-		this.props.onValueChange(values)
+		this.props.onValueChange(values);
 	}
 	
 	handleLoadOptions(input, callback){
@@ -76,8 +77,14 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 			<div id="taggable-search-container">
 				<AsyncCreatable {...asyncCreatableProps}/>
 			</div>
-		)
+		);
 	}
-	
-	
 }
+
+TaggableSearchBarPresentationalCommponent.propTypes = {
+	onInputChange: PropTypes.func.isRequired,
+	onMount: PropTypes.func.isRequired,
+	onValueChange: PropTypes.func.isRequired,
+	searchKey: PropTypes.string.isRequired,
+	store: PropTypes.object.isRequired
+};

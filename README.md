@@ -1,4 +1,5 @@
 [![NPM](https://nodei.co/npm/react-taggable-search.png)](https://nodei.co/npm/react-taggable-search/)
+
 [![npm version](https://badge.fury.io/js/react-taggable-search.svg)](https://badge.fury.io/js/react-taggable-search)
 
 

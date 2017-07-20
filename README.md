@@ -1,3 +1,7 @@
+[![NPM](https://nodei.co/npm/react-taggable-search.png)](https://nodei.co/npm/react-taggable-search/)
+[![npm version](https://badge.fury.io/js/react-taggable-search.svg)](https://badge.fury.io/js/react-taggable-search)
+
+
 # React Taggable Search
 
 A React/Redux taggable search input that can accept tags with dynamic options. Based off of the excellent [react-select](https://github.com/jedwatson/react-select) by Jed Watson. 

@@ -1,0 +1,10 @@
+language: javascript
+cache:
+	directories:
+	- node_modules
+  install: true
+  script:
+  	- 'tasks/run-tests.sh; fi'
+  env:
+  	global:
+  		- USE_YARN=no

@@ -1,6 +1,7 @@
-[![NPM](https://nodei.co/npm/react-taggable-search.png)](https://nodei.co/npm/react-taggable-search/)
-
 [![npm version](https://badge.fury.io/js/react-taggable-search.svg)](https://badge.fury.io/js/react-taggable-search)
+[![Build Status](https://travis-ci.org/Telmediq/react-taggable-search.svg?branch=master)](https://travis-ci.org/Telmediq/react-taggable-search)
+
+[![NPM](https://nodei.co/npm/react-taggable-search.png)](https://nodei.co/npm/react-taggable-search/)
 
 
 # React Taggable Search

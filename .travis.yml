@@ -2,6 +2,7 @@ language: node_js
 cache:
   directories:
     - node_modules
+  before_install: if [[ `npm -v` != 4* ]]; then npm i -g npm@4.2.0; fi
   install: true
   script:
     - 'tasks/run-tests.sh; fi'

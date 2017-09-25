@@ -46,7 +46,7 @@ const getDebouncedOptions = _.debounce((dispatch, state, input, searchKey, resol
 		fetchResource(uri, state.currentTag.optionResourceUriHeaders)
 			.then((resp) => {
 				resp = sortByTerm(state.currentTag.optionCreationFactory(resp), input);
-				resolve();
+				resolve(resp);
 				dispatch({
 					type: GET_OPTIONS_SUCCESS,
 					content: resp,
@@ -63,7 +63,7 @@ const getDebouncedOptions = _.debounce((dispatch, state, input, searchKey, resol
 			content: result,
 			key: searchKey
 		});
-		resolve();
+		resolve(result);
 	}
 }, 500, {leading: false, trailing: true});
 
@@ -229,12 +229,13 @@ export function handleInputChange(searchKey, input, resolve) {
 				if (!input && !Object.keys(state.value).includes(tag.tagKey)) return tag;
 				return tag.tagLabel.toUpperCase().includes(input.toUpperCase()) && !Object.keys(state.value).includes(tag.tagKey);
 			});
+			console.log('actions', options);
 			dispatch({
 				type: GET_OPTIONS_SUCCESS,
 				content: options,
 				key: searchKey
 			});
-			resolve();
+			resolve(options);
 		} else {
 			getDebouncedOptions(dispatch, state, input, searchKey, resolve);
 		}

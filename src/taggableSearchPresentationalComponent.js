@@ -13,12 +13,14 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 	}
 	
 	handleLoadOptions(input){
-		console.log('handle load options');
-		return this.props.onInputChange(input)
-			.then((options)=>{
-				console.log('options', options);
-				return {options}
-			});
+		const loadOptionsPromise = new Promise((resolve)=>{
+			setTimeout(()=>{
+				this.props.onInputChange(input).then((options)=>{
+					resolve({options});
+				});
+			}, 0);
+		});
+		return loadOptionsPromise;
 	}
 	
 	renderOptions(option){
@@ -45,6 +47,7 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 	render(){
 		const store = this.props.store[this.props.searchKey];
 		const values = store ? store.value : [];
+		const valueKey = store && store.currentTag ? 'value' : 'tagKey';
 
 		if (!document.getElementsByTagName('head')[0].querySelector('style[id="taggable-search-container"]')) {
 			// insert the style into the head
@@ -57,6 +60,7 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 		let asyncCreatableProps = {
 			multi: true,
 			value: values,
+			valueKey: valueKey,
 			name: 'search-box',
 			cache: false,
 			onChange: this.handleChange.bind(this),

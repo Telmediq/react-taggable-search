@@ -229,7 +229,6 @@ export function handleInputChange(searchKey, input, resolve) {
 				if (!input && !Object.keys(state.value).includes(tag.tagKey)) return tag;
 				return tag.tagLabel.toUpperCase().includes(input.toUpperCase()) && !Object.keys(state.value).includes(tag.tagKey);
 			});
-			console.log('actions', options);
 			dispatch({
 				type: GET_OPTIONS_SUCCESS,
 				content: options,

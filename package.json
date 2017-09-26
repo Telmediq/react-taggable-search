@@ -1,6 +1,6 @@
 {
   "name": "react-taggable-search",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React Taggable Search",
   "main": "lib/ReactTaggableSearch.js",
   "author": "Tyson Battistella",

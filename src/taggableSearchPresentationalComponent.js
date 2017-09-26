@@ -12,14 +12,15 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 		this.props.onValueChange(values);
 	}
 	
-	handleLoadOptions(input, callback){
-		this.props.onInputChange(input)
-			.then(()=>{
-				setTimeout(()=>{
-					const options = this.props.store[this.props.searchKey] ? this.props.store[this.props.searchKey].options : [];
-					callback(null, {options, cache: false});
-				}, 0);
-			});
+	handleLoadOptions(input){
+		const loadOptionsPromise = new Promise((resolve)=>{
+			setTimeout(()=>{
+				this.props.onInputChange(input).then((options)=>{
+					resolve({options});
+				});
+			}, 0);
+		});
+		return loadOptionsPromise;
 	}
 	
 	renderOptions(option){
@@ -46,7 +47,7 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 	render(){
 		const store = this.props.store[this.props.searchKey];
 		const values = store ? store.value : [];
-		const options = store && !store.loading ? store.options : [];
+		const valueKey = store && store.currentTag ? 'value' : 'tagKey';
 
 		if (!document.getElementsByTagName('head')[0].querySelector('style[id="taggable-search-container"]')) {
 			// insert the style into the head
@@ -59,7 +60,7 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 		let asyncCreatableProps = {
 			multi: true,
 			value: values,
-			options,
+			valueKey: valueKey,
 			name: 'search-box',
 			cache: false,
 			onChange: this.handleChange.bind(this),
@@ -69,7 +70,6 @@ export default class TaggableSearchBarPresentationalCommponent extends React.Com
 			promptTextCreator: this.renderCreateText.bind(this),
 			loadOptions: this.handleLoadOptions.bind(this),
 			ignoreCase: false,
-			isLoading: store ? store.loading : true
 		};
 		// Shitty workaround with bug from https://github.com/JedWatson/react-select/issues/1547
 		asyncCreatableProps = store && store.options.length ? {...asyncCreatableProps, filterOptions: a=>a} : {...asyncCreatableProps};

@@ -15,8 +15,9 @@ const store = createStore(
 	)
 );
 
-const App = React.createClass({
-	render () {
+
+class App extends React.Component {
+	render(){
 		const searchFn = (data) => {};
 		const tags = [
 			{
@@ -64,6 +65,6 @@ const App = React.createClass({
 			</Provider>
 		);
 	}
-});
+}
 
 ReactDOM.render(<App />, document.getElementById('app'));
